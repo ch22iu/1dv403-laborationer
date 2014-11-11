@@ -4,10 +4,10 @@ window.onload = function(){
 
 	
 	var birthday = function(date){
+		var birthday = new Date(date);
+		var currentDate = new Date();
 		
-
-
-			// Din kod här.
+		
 
 
 
