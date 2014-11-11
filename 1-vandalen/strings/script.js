@@ -8,12 +8,29 @@ window.onload = function(){
 		// Returnera den konverterade strängen.
 		// Vid fel, kasta ett undantag med ett meddelande till användaren. 
 	
+	if (str == "a")
+	{
+		return "#";
+	}
+	if (str == "A")
+	{
+		return "#";
+	}
+		if (str.length > 0) {
+			var convChar = "";
 
+			for (var i = 0; i < str.length; i+= 1) {
 
-
-
-
-
+				if (str.charCodeAt(i) >= 65 && str.charCodeAt(i) <= 90 || str.charCodeAt(i) >= 196 && str.charCodeAt(i) <= 214) {
+					convChar += str.charAt(i).toLowerCase().replace(/a/g, "#");
+				} else {
+					convChar += str.charAt(i).toUpperCase().replace(/A/g, "#");
+				};
+			};
+			return convChar;
+		} else {
+			return "Skriv något!";
+		};
 	};
 	// ------------------------------------------------------------------------------
 
