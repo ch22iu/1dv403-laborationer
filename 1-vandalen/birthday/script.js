@@ -7,11 +7,23 @@ window.onload = function(){
 		var birthday = new Date(date);
 		var currentDate = new Date();
 		
+		if (currentDate > birthday) {
 		
-
-
-
-
+		birthday.setFullYear(currentDate.getFullYear());
+		if (currentDate > birthday) {
+			birthday.setFullYear(currentDate.getFullYear() + 1);
+			}
+			
+		var numberOfDays = Math.ceil((birthday - currentDate) / (1000*60*60*24));
+		
+		if (numberOfDays === 365) {
+			return 0;
+			};
+			
+			return numberOfDays;
+			} else {
+				console.log("Något gick fel!");
+				}
 	};
 	// ------------------------------------------------------------------------------
 
