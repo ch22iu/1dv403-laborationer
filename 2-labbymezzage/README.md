@@ -11,7 +11,11 @@ Laboration 2 - Labby Mezzage
 Filer
 ============================
 message.js
+
 messageBoard.js
+
 index.html
+
 Pictures
+
 2 css files
