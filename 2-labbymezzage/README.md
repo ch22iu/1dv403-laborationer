@@ -1,4 +1,17 @@
 Laboration 2 - Labby Mezzage
 ============================
 
-I denna katalog finns det du behöver för att genomföra laboration 2. Gör ändringarna direkt i detta forkade repro.
+
+1. Först ska man försöka skapa upp ett nytt objekt så man kan skriva.
+
+2. Utveckla själva message.js
+
+3. Designen
+
+Filer
+============================
+message.js
+messageBoard.js
+index.html
+Pictures
+2 css files
