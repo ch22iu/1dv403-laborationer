@@ -64,18 +64,56 @@ function messageBoard(newBoard) {
 		
 			content.removeChild(board);
 			
+			// Loggar
+			console.log("Ta bort!");
+			
 			return false;
 		
 		};
 	};
-		that.newMessage = function() {
-			var text = document.querySelector("#" +newBoard+ " textarea");
-			var messageObject = new Message(text.value, new Date());
-			
-			that.messages.push(messageObject);
-			
-			text.value = "";
-		};
+	that.newMessage = function() {
+		var text = document.querySelector("#" +newBoard+ " textarea");
+		var messageObject = new Message(text.value, new Date());
+
+		that.message.push(messageObject);
+		that.renderMessages();
+		
+		// Rensar
+		text.value = "";
+				
+		// Loggar
+		console.log("Lägger till meddelande.");
+	};
+		
+	that.renderMessages = function() {
+		var messageArea = document.querySelector("#" +newBoard+ " .message-box");
+		// Tar bort alla meddelanden
+		messageArea.innerHTML = "";
+
+
+		for (var i = 0; i < that.message.length; i += 1) {
+			renderMessage(i);
+			}
+
+		function renderMessage(messageID) {
+			var text = document.createElement("p");
+			var messageContainer = document.createElement("article");
+			var infoContainer = document.createElement("div");
+			var makeChange = document.createElement("a");
+
+			infoContainer.setAttribute("class", "info");
+			messageContainer.setAttribute("class", "message");
+
+			// Lägger till meddelandet
+			text.innerHTML = that.message[messageID].getHTMLText();
+
+			messageArea.appendChild(messageContainer);
+			messageContainer.appendChild(text);
+			messageContainer.appendChild(infoContainer);
+			messageContainer.appendChild(makeChange);
+
+			}
+	};
 }
 
 		
