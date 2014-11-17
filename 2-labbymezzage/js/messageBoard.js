@@ -13,8 +13,10 @@ window.onload = function() {
 		var board = new messageBoard("board" +check);
 		board.init();
 		
+		// Loggar nytt meddelande (Obj).
 		check += 1;
 		console.log(check);
+		console.log("Nytt meddelande!!");
 		return false;
 	};
 };
@@ -112,7 +114,7 @@ function messageBoard(newBoard) {
 			messageContainer.appendChild(infoContainer);
 			messageContainer.appendChild(makeChange);
 
-			}
+		}
 	};
 }
 
