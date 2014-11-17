@@ -35,8 +35,14 @@ function messageBoard(newBoard) {
 		var header = document.createElement("header");
 		var h1 = document.createElement("h1");
 		var button = document.createElement("input");
+		var closeBoard = document.createElement("a");
 		
 		// Lägger till attributen
+		
+		closeBoard.setAttribute("href", "#");
+		closeBoard.setAttribute("class", "closeBoard");
+		closeBoard.textContent = "Stäng";
+		header.appendChild(closeBoard);
 		header.setAttribute("class", "header");
 		messageBox.setAttribute("class", "message-box");
 		textarea.setAttribute("autofocus", "autofocus");
@@ -52,9 +58,24 @@ function messageBoard(newBoard) {
 		board.appendChild(textarea);
 		board.appendChild(button);
 		
-		button.addEventListener("click", false);
-		
-	}
+		button.addEventListener("click", that.newMessage, false);
 	
+		closeBoard.onclick = function() {
+		
+			content.removeChild(board);
+			
+			return false;
+		
+		};
+	};
+		that.newMessage = function() {
+			var text = document.querySelector("#" +newBoard+ " textarea");
+			var messageObject = new Message(text.value, new Date());
+			
+			that.messages.push(messageObject);
+			
+			text.value = "";
+		};
 }
+
 		
