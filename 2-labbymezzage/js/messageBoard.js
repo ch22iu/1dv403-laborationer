@@ -2,6 +2,7 @@
 
 window.onload = function() {
 	var mBoard = document.querySelector(".messageBoard");
+	
 	var check = 0;
 	
 	mBoard.onclick = function() {
@@ -9,7 +10,7 @@ window.onload = function() {
 		var newMess = document.createElement("div");
 		newMess.setAttribute("id", "board" +check);
 		content.appendChild(newMess);
-		
+		mBoard.style.color = "grey";
 		var board = new messageBoard("board" +check);
 		board.init();
 		
