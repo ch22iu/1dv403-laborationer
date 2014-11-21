@@ -2,6 +2,7 @@
 
 window.onload = function(){
 	
+	// Skapar upp en variabel som heter secret som innehåller ett slumptal. Sätter även att counter ska vara 0.
 	var secret = Math.floor((Math.random() * 100) + 1); // Detta tal behöver bytas ut mot ett slumpat tal.
 	var counter = 0;
 	
@@ -11,6 +12,10 @@ window.onload = function(){
 		console.log("Du gissade: " + number); // Detta nummer är det som användaren gissade på.
 			
 		// Plats för förändring.
+		
+		// Om talet är utanför intervallet, om number är mindre än 0 och om talet är större än 100 så returnerar vi false,
+		// annars räknar vi och kollar om number är det hemliga talet och returnerar text samt + secret + hur många gissningar.
+		
 		if (number < 0 || number > 100) {
 			return [false, "Talet är utanför intervallet 0 - 100"];
 		} else {

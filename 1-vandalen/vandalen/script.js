@@ -1,13 +1,14 @@
 "use strict";
 
-var makePerson = function(persArr){ 
+
+var makePerson = function(person){ 
 	var result = {};
 	var isString;
 	var isNumber;
 	var i;
 	
 	// Sorterar och hämtar namnen.
-	var names = persArr.map (function (name){ 
+	var names = person.map (function (name){ 
 
 		return name.name;}).sort(function(a, b) { 
 		return a.localeCompare(b) 
@@ -15,8 +16,8 @@ var makePerson = function(persArr){
 	});
 	
 	
-	//Plockar ut åldrarna
-	var ages = persArr.map(function (age){ 
+	//Plockar ut åldern.
+	var ages = person.map(function (age){ 
 		return age.age;
 	});
 
@@ -45,7 +46,7 @@ var makePerson = function(persArr){
 	//Avrundar
 	averageAge = Math.round(averageAge);
 
-	// Skapar två variablar (max och min) från Array.
+	// Skapar två variablar (max och min) från Arrayen.
 	var maxAge = Math.max.apply(Math, ages);
 	var minAge = Math.min.apply(Math, ages);
 
@@ -69,4 +70,5 @@ var data = [
 
 
 var result = makePerson(data);
+
 console.log(result);
