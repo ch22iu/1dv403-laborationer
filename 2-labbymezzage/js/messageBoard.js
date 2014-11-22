@@ -37,9 +37,12 @@ function messageBoard(newBoard) {
 		var h1 = document.createElement("h1");
 		var button = document.createElement("input");
 		var closeBoard = document.createElement("a");
+		var messageCount = document.createElement("span");
+		var timeButton = document.createElement("a");
+		var timeStamp = document.createElement("span");
 		
 		// Lägger till attributen
-		
+		messageCount.setAttribute("class", "message-count");
 		closeBoard.setAttribute("href", "#");
 		closeBoard.setAttribute("class", "closeBoard");
 		closeBoard.textContent = "Stäng";
@@ -50,7 +53,9 @@ function messageBoard(newBoard) {
 		button.setAttribute("value", "Skicka");
 		button.setAttribute("class", "button send");
 		button.setAttribute("type", "submit");
-		
+		timeStamp.setAttribute("class", "time-stamp");
+		timeButton.setAttribute("href", "#");
+		timeButton.setAttribute("class", "time");
 		// Append
 		board.appendChild(header);
 		header.appendChild(h1);
@@ -58,6 +63,10 @@ function messageBoard(newBoard) {
 		board.appendChild(messageBox);
 		board.appendChild(textarea);
 		board.appendChild(button);
+		board.appendChild(messageCount);
+		
+		
+		
 		
 		button.addEventListener("click", that.newMessage, false);
 	
@@ -71,6 +80,7 @@ function messageBoard(newBoard) {
 			return false;
 		
 		};
+
 	};
 	that.newMessage = function() {
 		var text = document.querySelector("#" +newBoard+ " textarea");
@@ -99,20 +109,58 @@ function messageBoard(newBoard) {
 		function renderMessage(messageID) {
 			var text = document.createElement("p");
 			var messageContainer = document.createElement("article");
+			var deleteButton = document.createElement("a");
 			var infoContainer = document.createElement("div");
-			var makeChange = document.createElement("a");
+			var timeButton = document.createElement("a");
+			var timeStamp = document.createElement("span");
 
+			infoContainer.setAttribute("class", "info");
+			deleteButton.setAttribute("href", "#");
+			deleteButton.setAttribute("class", "delete");
+			timeButton.setAttribute("href", "#");
+			timeButton.setAttribute("class", "time");
+			timeStamp.setAttribute("class", "time-stamp");
 			infoContainer.setAttribute("class", "info");
 			messageContainer.setAttribute("class", "message");
 
 			// Lägger till meddelandet
 			text.innerHTML = that.message[messageID].getHTMLText();
+			
+			// Lägger till tiden
+			timeStamp.innerHTML = that.message[messageID].getDateText();
 
 			messageArea.appendChild(messageContainer);
 			messageContainer.appendChild(text);
+			messageContainer.appendChild(timeStamp);
+			infoContainer.appendChild(timeButton);
+			infoContainer.appendChild(deleteButton);
 			messageContainer.appendChild(infoContainer);
-			messageContainer.appendChild(makeChange);
+				// Ta bort meddelande
+				deleteButton.onclick = function() {
+					var textbox = document.querySelector("#" +messageID+ " textarea");
+					if (window.confirm("Vill du verkligen radera meddelandet?")) {
+						that.removeMessage(messageID);
+						messageArea.innerHTML = "";
+						that.rendermessage();
+						textbox.focus();
+					}
 
+					return false;
+				};
+
+				// Visa tid i alert
+				timeButton.onclick = function() {
+					that.alertTime(messageID);
+					return false;
+				};
+				
+			that.removeMessage = function(messageID) {
+				this.message.splice(messageID, 1);
+			};
+
+			that.alertTime = function(messageID) {
+				alert(this.message[messageID].getDateText(true));
+			};
 		}
 	};
 }
