@@ -3,6 +3,7 @@
 window.addEventListener("load", function() {
 	var mBoard = document.querySelector(".messageBoard");
 	
+	// Kollar hur många meddelande man har skapat upp
 	var check = 0;
 	
 	mBoard.onclick = function() {
