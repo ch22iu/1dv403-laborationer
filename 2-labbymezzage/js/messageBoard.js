@@ -145,6 +145,7 @@ function messageBoard(newBoard) {
 				deleteButton.onclick = function() {
 					var textbox = document.querySelector("#" +newBoard+ " textarea");
 					if (window.confirm("Vill du verkligen radera meddelandet?")) {
+						console.log("Användare har tagit bort meddelande: " + " " + messageID);
 						that.removeMessage(messageID);
 						messageArea.innerHTML = "";
 						that.renderMessages();
