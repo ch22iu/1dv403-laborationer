@@ -1,6 +1,6 @@
 "use strict";
 
-window.onload = function() {
+window.addEventListener("load", function() {
 	var mBoard = document.querySelector(".messageBoard");
 	
 	var check = 0;
@@ -20,7 +20,7 @@ window.onload = function() {
 		console.log("Nytt meddelande!!");
 		return false;
 	};
-};
+});
 /* window.onload = function() {
 	// Ska försöka skapa upp nytt här senare..
 } */
