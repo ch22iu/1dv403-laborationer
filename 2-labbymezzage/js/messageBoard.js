@@ -21,9 +21,6 @@ window.addEventListener("load", function() {
 		return false;
 	};
 });
-/* window.onload = function() {
-	// Ska försöka skapa upp nytt här senare..
-} */
 
 function messageBoard(newBoard) {
 	var that = this;
