@@ -42,7 +42,7 @@ function messageBoard(newBoard) {
 		var timeStamp = document.createElement("span");
 		
 		// Lägger till attributen
-		messageCount.setAttribute("class", "message-count");
+		messageCount.setAttribute("class", "messageCount");
 		closeBoard.setAttribute("href", "#");
 		closeBoard.setAttribute("class", "closeBoard");
 		closeBoard.textContent = "Stäng";
@@ -100,6 +100,11 @@ function messageBoard(newBoard) {
 		var messageArea = document.querySelector("#" +newBoard+ " .message-box");
 		// Tar bort alla meddelanden
 		messageArea.innerHTML = "";
+		
+		// Sätter antal meddelanden
+		var messageCounter = document.querySelector("#" +newBoard+ " .messageCount");
+
+		messageCounter.innerHTML = "Antal meddelanden: " + that.message.length;
 
 
 		for (var i = 0; i < that.message.length; i += 1) {
@@ -135,13 +140,14 @@ function messageBoard(newBoard) {
 			infoContainer.appendChild(timeButton);
 			infoContainer.appendChild(deleteButton);
 			messageContainer.appendChild(infoContainer);
+			
 				// Ta bort meddelande
 				deleteButton.onclick = function() {
-					var textbox = document.querySelector("#" +messageID+ " textarea");
+					var textbox = document.querySelector("#" +newBoard+ " textarea");
 					if (window.confirm("Vill du verkligen radera meddelandet?")) {
 						that.removeMessage(messageID);
 						messageArea.innerHTML = "";
-						that.rendermessage();
+						that.renderMessages();
 						textbox.focus();
 					}
 
