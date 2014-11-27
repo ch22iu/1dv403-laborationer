@@ -136,7 +136,7 @@ function MemoryGame(boardID) {
 			imgTwo = click.firstChild;
 			imgTwo.src = "pics/pic" + randomArray + ".png";
 			countArray.splice(1, 1, imgTwo);
-			guessCount += 1;
+
 			
 			/* 
 				Om Första i arryen är samma 
@@ -171,7 +171,7 @@ function MemoryGame(boardID) {
 			alert("Du klarade det på" + guessCount);
 		}
 		// Om man har svarat över 25 gissningar.
-		if (guessCount === 25) {
+		if (guessCount === 5) {
 			alert("Jadu... Ditt minne var inte det bästa!");
 		}
 	
