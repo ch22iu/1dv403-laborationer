@@ -70,7 +70,11 @@ function MemoryGame(boardID) {
 		for (var i = 0; i < randomArray.length; i += 1) {
 			randomTiles(i);
 		}
-
+		/* 
+			Funktionen som tar hand om/skapar upp bilderna
+			Sätter även lite attribut till dom olika childsen.
+			Loggar även när en användare trycker på en bild.
+		*/
 		function randomTiles(i) {
 
 			a = document.createElement("a");
@@ -85,21 +89,31 @@ function MemoryGame(boardID) {
 
 			a.onclick = function() {
 				that.switchTile(this, randomArray[i]);
+				console.log("Du tryckte på bild nr:" + " " + randomArray[i]);
 				return false;
 			};
 		}
 	};
-	
+	/*
+		Skapar upp en funktion som jag skickar in två argument (click, random)
+		I denna funktion har jag även 2 variabler som kommer ta hand om 
+		vilka som kommer vara firstChild osv.
+	*/
 	that.switchTile = function(click, randomArray) {
 		var imgOne;
 		var imgTwo;
 		
 		clickCount += 1;
 		
-		//
+		/* 
+			Om cc är 1 så kommer den först kolla om det är par och sätter
+			attribut till dom olika värdena.
+			Kollar att första klicket inte tillhör par
+		*/
+		
 		if (clickCount == 1)
 		{
-			// Kollar att första klicket inte tillhör par
+			
 			if (click.firstChild.classList.contains("pair")) {
 				clickCount = 0;
 				return;
@@ -110,9 +124,10 @@ function MemoryGame(boardID) {
 			countArray.splice(0, 1, imgOne);
 			return;
 		}
-		// 
+		
+		// Kollar att andra klicket inte tillhör par
 		if (clickCount ===  2) {
-			// Kollar att andra klicket inte tillhör par
+			
 			if (click.firstChild.classList.contains("pair")) {
 				clickCount = 1;
 				return;
@@ -122,12 +137,41 @@ function MemoryGame(boardID) {
 			imgTwo.src = "pics/pic" + randomArray + ".png";
 			countArray.splice(1, 1, imgTwo);
 			guessCount += 1;
+			
+			/* 
+				Om Första i arryen är samma 
+				som andra så sätter den ut 
+				attributen att dom är samma.
+				Samt att den lägger till en i par.
+				Även sätter click till 0.
+			*/
+			
+			if (countArray[0].src === countArray[1].src) {
+				countArray[0].setAttribute("class", "pair");
+				countArray[1].setAttribute("class", "pair");
+
+				pairCount += 1;
+				clickCount = 0;
+			}
+			// Sätter om man svara fel byter tillbaka.
+			else {
+				setTimeout(function() {
+					countArray[0].src = "pics/pic.jpg";
+					countArray[1].src = "pics/pic.jpg";
+					countArray[0].classList.remove("open");
+					countArray[1].classList.remove("open");
+					clickCount = 0;
+
+				}, 1000);
+			}
+			guessCount += 1;
 		}
-		
+		// Om man har svarat rätt på alla 8st.
 		if (pairCount === 8) {
 			alert("Du klarade det på" + guessCount);
 		}
-		if (pairCount === 25) {
+		// Om man har svarat över 25 gissningar.
+		if (guessCount === 25) {
 			alert("Jadu... Ditt minne var inte det bästa!");
 		}
 	
