@@ -78,7 +78,7 @@ function MemoryGame(boardID) {
 			a.href = "#";
 			a.setAttribute("class", "tile");
 
-			img.src = "img/pic.jpg";
+			img.src = "pics/pic.jpg";
 
 			memoryBoard.appendChild(a);
 			a.appendChild(img);
@@ -88,5 +88,38 @@ function MemoryGame(boardID) {
 				return false;
 			};
 		}
+	};
+	
+	that.switchTile = function(click, randomArray) {
+		var imgOne;
+		var imgTwo;
+		
+		clickCount += 1;
+		
+		//
+		if (clickCount == 1)
+		{
+			// Kollar att första klicket inte tillhör par
+			if (click.firstChild.classList.contains("pair")) {
+				clickCount = 0;
+				return;
+			}
+			imgOne = click.firstChild;
+			imgOne.src = "pics/pic" + randomArray + ".png";
+			imgOne.setAttribute("class", "open");
+			countArray.splice(0, 1, imgOne);
+			return;
+		}
+		// 
+		if (clickCount ===  2) {
+		
+		
+			guessCount += 1;
+		}
+		
+		if (pairCount === 8) {
+			alert("Du klarade det på" + guessCount);
+		}
+	
 	};
 };
