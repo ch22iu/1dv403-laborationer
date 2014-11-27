@@ -112,13 +112,23 @@ function MemoryGame(boardID) {
 		}
 		// 
 		if (clickCount ===  2) {
-		
-		
+			// Kollar att andra klicket inte tillhör par
+			if (click.firstChild.classList.contains("pair")) {
+				clickCount = 1;
+				return;
+			}
+
+			imgTwo = click.firstChild;
+			imgTwo.src = "pics/pic" + randomArray + ".png";
+			countArray.splice(1, 1, imgTwo);
 			guessCount += 1;
 		}
 		
 		if (pairCount === 8) {
 			alert("Du klarade det på" + guessCount);
+		}
+		if (pairCount === 25) {
+			alert("Jadu... Ditt minne var inte det bästa!");
 		}
 	
 	};
