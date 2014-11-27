@@ -58,6 +58,7 @@ function messageBoard(newBoard) {
 		timeStamp.setAttribute("class", "time-stamp");
 		timeButton.setAttribute("href", "#");
 		timeButton.setAttribute("class", "time");
+		
 		// Append
 		board.appendChild(header);
 		header.appendChild(h1);
@@ -66,40 +67,51 @@ function messageBoard(newBoard) {
 		board.appendChild(textarea);
 		board.appendChild(button);
 		board.appendChild(messageCount);
-		
-		
-		
-		
 		button.addEventListener("click", that.newMessage, false);
-	
-		closeBoard.onclick = function() {
 		
+		closeBoard.onclick = function() {
 			content.removeChild(board);
-			
 			// Loggar
 			console.log("Ta bort!");
-			
 			return false;
-		
 		};
-
+			// Lyssnar till enter
+		textarea.onkeydown = function(e) {
+			if (!e) {
+				e = window.event; 
+				}
+			if (e.keyCode === 13 && e.shiftKey === false) {
+				that.newMessage();
+				return false;
+			}
+		};
+		
 	};
 	that.newMessage = function() {
 		var text = document.querySelector("#" +newBoard+ " textarea");
 		var messageObject = new Message(text.value, new Date());
 
-		that.message.push(messageObject);
-		that.renderMessages();
-		
-		// Rensar
-		text.value = "";
+			if (text.value === "")
+			{
+				alert("Du måste skriva in någon text!");
+			}
+			else
+			{
+				// Skickar in ett nytt objekt utav message
+				that.message.push(messageObject);
+				that.renderMessages();
 				
-		// Loggar
-		console.log("Lägger till meddelande.");
+				// Rensar textboxen.
+				text.value = "";
+						
+				// Loggar
+				console.log("Lägger till meddelande.");
+			}
 	};
 		
 	that.renderMessages = function() {
 		var messageArea = document.querySelector("#" +newBoard+ " .message-box");
+		
 		// Tar bort alla meddelanden
 		messageArea.innerHTML = "";
 		
@@ -162,7 +174,7 @@ function messageBoard(newBoard) {
 					that.alertTime(messageID);
 					return false;
 				};
-				
+			// Tar bort meddelandet (ID)
 			that.removeMessage = function(messageID) {
 				this.message.splice(messageID, 1);
 			};
