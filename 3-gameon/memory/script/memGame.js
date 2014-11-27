@@ -35,3 +35,58 @@ function MemoryGame(boardID) {
 	that.init = function() {
 		that.generateMemory();
 	};
+
+	that.random = function() {
+		var randomTiles = RandomGenerator.getPictureArray(4, 4);
+
+		return randomTiles;
+	};
+
+	that.generateMemory = function() {
+		var currentBoard, a, img, memoryBoard, randomArray, count, closeTab, wrapper;
+
+		randomArray = that.random();
+
+		wrapper = document.querySelector(".content");
+		currentBoard = document.getElementById(boardID);
+
+		closeTab = document.createElement("a");
+		closeTab.href = "#";
+		closeTab.textContent = "Stäng";
+		closeTab.setAttribute("class", "closeTab");
+
+		memoryBoard = document.createElement("div");
+		memoryBoard.setAttribute("class", "memoryBoard");
+
+		currentBoard.appendChild(closeTab);
+		currentBoard.appendChild(memoryBoard);
+
+		// close memoryBoardboard
+		closeTab.onclick = function() {
+			wrapper.removeChild(currentBoard);
+			console.log("Du stängde ner" + " " +boardID);
+			return false;
+		};
+		for (var i = 0; i < randomArray.length; i += 1) {
+			randomTiles(i);
+		}
+
+		function randomTiles(i) {
+
+			a = document.createElement("a");
+			img = document.createElement("img");
+			a.href = "#";
+			a.setAttribute("class", "tile");
+
+			img.src = "img/pic.jpg";
+
+			memoryBoard.appendChild(a);
+			a.appendChild(img);
+
+			a.onclick = function() {
+				that.switchTile(this, randomArray[i]);
+				return false;
+			};
+		}
+	};
+};
