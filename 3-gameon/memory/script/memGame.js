@@ -1,30 +1,29 @@
-var startGame = {
-	newGame: function() {
-		var startButton = document.getElementById("newGameBtn");
-
+window.addEventListener("load", function() {
+	var startButton = document.getElementById("newGameBtn");
+	var text = document.getElementById("textarea");
+	var check = 1;
+	
 		startButton.onclick = function() {
-			startGame.newMemory();
-			return false;
-		};
-	}, gameCounter: 0, newMemory: function() {
-		var wrapper = document.querySelector(".content");
-		var newBoard = document.createElement("div");
-		newBoard.id = "#board" + startGame.gameCounter;
-		newBoard.setAttribute("class", "board");
+			newMemory();
+			function newMemory() {
+				var wrapper = document.querySelector(".content");
+				var newBoard = document.createElement("div");
+				newBoard.id = "spelbricka: " + " " + check;
+				newBoard.setAttribute("class", "board");
 
-		wrapper.appendChild(newBoard);
-		var memory = new MemoryGame(newBoard.id);
-		memory.init();
+				wrapper.appendChild(newBoard);
+				
+				var memory = new MemoryGame(newBoard.id);
+				memory.init();
 
-		startGame.gameCounter += 1;
-		
-		console.log(startGame.gameCounter);
-	}
-};
+				check += 1;
+				console.log("Du har skapat upp ett nytt spel");
+			}
+	};
+	
+});
 
-window.onload = startGame.newGame;
-
-MemoryGame = function(boardID) {
+function MemoryGame(boardID) {
 	var that = this;
 
 	// Mina Closures variabler

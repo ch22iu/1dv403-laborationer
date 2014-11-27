@@ -9,9 +9,11 @@ window.addEventListener("load", function() {
 	mBoard.onclick = function() {
 		var content = document.querySelector(".content");
 		var newMess = document.createElement("div");
+		
 		newMess.setAttribute("id", "board" +check);
 		content.appendChild(newMess);
 		mBoard.style.color = "grey";
+		
 		var board = new messageBoard("board" +check);
 		board.init();
 		
