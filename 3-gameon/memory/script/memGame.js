@@ -168,10 +168,10 @@ function MemoryGame(boardID) {
 		}
 		// Om man har svarat rätt på alla 8st.
 		if (pairCount === 8) {
-			alert("Du klarade det på" + guessCount);
+			alert("Du klarade det på" + " " + guessCount + " " + "försök.");
 		}
 		// Om man har svarat över 25 gissningar.
-		if (guessCount === 5) {
+		if (guessCount === 25) {
 			alert("Jadu... Ditt minne var inte det bästa!");
 		}
 	
