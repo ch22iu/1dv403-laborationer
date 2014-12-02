@@ -1,0 +1,84 @@
+
+body 
+{
+	background-color: grey;
+	margin-left:auto;
+	margin-right:auto;
+}
+h1 
+{
+	text-align: center;
+	color: black;
+	font-size: 40px;
+}
+
+#newGameBtn
+{
+	border:0px solid black;
+	border-radius:5px;
+}
+
+a 
+{
+	text-decoration: none;
+	color:black;
+}
+
+.content 
+{
+	overflow: auto;
+}
+
+.board 
+{
+	position: relative;
+	width: 395px;
+	float: left;
+	margin: 20px 10px 20px 10px;
+	padding: 2px 0;
+	background-color: black;
+	border-radius: 3px;
+}
+
+.tile , .tile img 
+{
+	padding: 2px;
+}
+
+.tile img 
+{
+	width: 90px;
+	height: 90px;
+}
+.closeTab 
+{
+	position: absolute;
+	padding: 2px;
+	color: #2A8FBD;
+	display: inline-block;
+	border-radius: 3px 3px 0 0;
+	background-color: #FFFFFF;
+	top: 0px;
+	right: 0;
+}
+
+.close 
+{
+	float:left;
+	background-image: #b72d16;
+	background-image: -webkit-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -moz-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -o-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -ms-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: linear-gradient(bottom, #b72d16, #cd3217);
+}
+
+.overlay 
+{
+position: absolute;
+background-color: rgba(0, 0, 0, 0.6);
+width: 100%;
+height: 100%;
+top: 0;
+z-index: 5;
+}
