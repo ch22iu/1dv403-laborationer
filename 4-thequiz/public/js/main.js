@@ -81,7 +81,7 @@ var Quiz = {
 
     }
     else{
-      alert("ANSWER ME NOW");
+      alert("You forgot to guess");
     }
   },
   

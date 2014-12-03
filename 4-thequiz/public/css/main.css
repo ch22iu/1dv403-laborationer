@@ -45,7 +45,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
 h1 {
-  font-size: 8em;
+  font-size: 3em;
   line-height: 1.1471em;
   text-transform: uppercase;
   font-weight: bold;
@@ -56,7 +56,7 @@ h1 {
   background-position: 310px 430px; }
 
 h2 {
-  font-size: 2.625em;
+  font-size: 1.625em;
   line-height: 1.2381em; }
 
 h3 {
