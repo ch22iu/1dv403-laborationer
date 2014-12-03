@@ -1,0 +1,487 @@
+/* Reset & Normalization
+=============================================*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a,
+abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike,
+strong, sub, sup, tt, var, b, u, i, center, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, article,
+aside, canvas, details, embed, figure, figcaption,
+footer, header, hgroup, menu, nav, output, ruby, section,
+summary, time, mark, audio, video{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, dialog{
+	display: block;
+}
+audio, canvas, video{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+audio:not([controls]){
+	display: none;
+}
+[hidden]{
+	display: none;
+	visibility: hidden;
+}
+
+/* Colors
+=============================================*/
+$primary: #2d7c82;
+$secondary: #720028;
+$tertiary: #63ac41;
+$ctaPrimary: #000;
+$ctaSecondary: #fff;
+
+/* Fonts
+=============================================*/
+$serif: 'Georgia', serif;
+$sansSerif: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$slabSerif: 'Arial', sans-serif;
+
+/* Mixins
+=============================================*/
+@mixin box-shadow($var...){
+	-webkit-box-shadow: $var;
+	-moz-box-shadow: $var;
+	-ms-box-shadow: $var;
+	-o-box-shadow: $var;
+	box-shadow: $var;
+}
+@mixin transform($var...){
+	-webkit-transform: $var;
+	-moz-transform: $var;
+	-ms-transform: $var;
+	-o-transform: $var;
+	transform: $var;
+}
+@mixin transform-origin($var...){
+	-webkit-transform-origin: $var;
+	-moz-transform-origin: $var;
+	-ms-transform-origin: $var;
+	-o-transform-origin: $var;
+	transform-origin: $var;
+}
+@mixin transition($var...){
+	-webkit-transition: $var;
+	-moz-transition: $var;
+	-ms-transition: $var;
+	-o-transition: $var;
+	transition: $var;
+}
+@mixin box-sizing($var){
+	-webkit-box-sizing: $var;
+	-moz-box-sizing: $var;
+	-ms-box-sizing: $var;
+	-o-box-sizing: $var;
+	box-sizing: $var;
+}
+@mixin backface-visibility($var){
+	-webkit-backface-visibility: $var;
+	-moz-backface-visibility: $var;
+	-ms-backface-visibility: $var;
+	-o-backface-visibility: $var;
+	backface-visibility: $var;
+}
+@mixin transform-style($var){
+	-webkit-transform-style: $var;
+	-moz-transform-style: $var;
+	-ms-transform-style: $var;
+	-o-transform-style: $var;
+	transform-style: $var;
+}
+@mixin transition-delay($var){
+	-webkit-transition-delay: $var;
+	-moz-transition-delay: $var;
+	-ms-transition-delay: $var;
+	-o-transition-delay: $var;
+	transition-delay: $var;
+}
+@mixin gradient($var...){
+	background: -webkit-linear-gradient($var);
+	background: -moz-linear-gradient($var);
+	background: -ms-linear-gradient($var);
+	background: -o-linear-gradient($var);
+	background: linear-gradient($var);
+}
+@mixin animation($var...){
+	-webkit-animation: $var;
+	-moz-animation: $var;
+	-ms-animation: $var;
+	-o-animation: $var;
+	animation: $var;
+}
+@mixin user-select($var){
+	-webkit-user-select: $var;
+	-moz-user-select: $var;
+	-ms-user-select: $var;
+	-o-user-select: $var;
+	user-select: $var;
+}
+@mixin touch-callout($var){
+	-webkit-touch-callout: $var;
+	-moz-touch-callout: $var;
+	-ms-touch-callout: $var;
+	-o-touch-callout: $var;
+	touch-callout: $var;   
+}
+@mixin perspective($var){
+	-webkit-perspective: $var;
+	-moz-perspective: $var;
+	-ms-perspective: $var;
+	-o-perspective: $var;
+	perspective: $var;
+}
+@mixin filter($var...){
+	-webkit-filter: $var;
+	-moz-filter: $var;
+	-ms-filter: $var;
+	-o-filter: $var;
+	filter: $var;
+}
+@mixin text-stroke($var){
+	-webkit-text-stroke: $var;
+	-moz-text-stroke: $var;
+	-ms-text-stroke: $var;
+	-o-text-stroke: $var;
+	text-stroke: $var;
+}
+@mixin background-size($var){
+	-webkit-background-size: $var;
+	-moz-background-size: $var;
+	-ms-background-size: $var;
+	-o-background-size: $var;
+	background-size: $var;
+}
+@mixin background-blend-mode($var...){
+	-webkit-background-blend-mode: $var;
+	-moz-background-blend-mode: $var;
+	-ms-background-blend-mode: $var;
+	-o-background-blend-mode: $var;
+	background-blend-mode: $var;
+}
+@mixin tap-highlight-color($var...){
+	-webkit-tap-highlight-color: $var;
+	-moz-tap-highlight-color: $var;
+	-ms-tap-highlight-color: $var;
+	-o-tap-highlight-color: $var;
+	tap-highlight-color: $var;
+}
+@mixin text-rendering($var){
+	-webkit-text-rendering: $var;
+	-moz-text-rendering: $var;
+	-ms-text-rendering: $var;
+	-o-text-rendering: $var;
+	text-rendering: $var;
+}
+@mixin font-smoothing($var){
+	-webkit-font-smoothing: $var;
+	-moz-font-smoothing: $var;
+	-ms-font-smoothing: $var;
+	-o-font-smoothing: $var;
+	font-smoothing: $var;
+}
+@mixin animation-delay($var){
+	-webkit-animation-delay: $var;
+	-moz-animation-delay: $var;
+	-ms-animation-delay: $var;
+	-o-animation-delay: $var;
+	animation-delay: $var;
+}
+/* Headings
+=============================================*/
+h1, h2, h3, h4, h5, h6{
+	font-size: 1em;
+	line-height: 1.3em;
+	font-weight: normal;
+}
+h1{
+	font-size: 8em;
+	line-height: 1.1471em;
+	text-transform: uppercase;
+	font-weight: bold;
+	-webkit-text-fill-color: transparent;
+	  background: -webkit-linear-gradient(transparent, transparent),
+	  						url('../images/boston.jpg') repeat;
+	  -webkit-background-clip: text;
+	  background-clip: text;
+	  background-position: 310px 430px;
+}
+h2{
+	font-size: 2.625em;
+	line-height: 1.2381em;
+}
+h3{
+	font-size: 1.625em;
+	line-height: 1em;
+	height: 3.8em;
+	display: table-cell;
+	vertical-align: middle;
+}
+small{
+	font-size: 0.625em;
+}
+/* Preformatted
+=============================================*/
+pre{
+	white-space: pre;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+pre, code, kbd, samp{
+	font: 1em/1.625em;
+}
+/* Tables
+=============================================*/
+table{
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+th{
+	text-align: left;
+}
+/* Forms
+=============================================*/
+fieldset{
+	border: 0;
+}
+textarea{
+	overflow: auto;
+	vertical-align: top;
+}
+legend{
+	border: 0;
+	*margin-left: -7px;
+}
+button, input, select, textarea{
+	font: 1em/1.625;
+	vertical-align: baseline;
+	*vertical-align: middle;
+}
+button, input{
+	line-height: normal;
+	*overflow: visible;
+}
+button, input[type="button"], input[type="reset"], input[type="submit"]{
+	cursor: pointer;
+	-webkit-appearance: button;
+}
+input[type="checkbox"], input[type="radio"]{
+	box-sizing: border-box;
+}
+input[type="search"]{
+	-webkit-appearance: textfield;
+	@include box-sizing(content-box);
+}
+input[type="search"]::-webkit-search-decoration{
+	-webkit-appearance: none;
+}
+button::-moz-focus-inner, input::-moz-focus-inner{
+	border: 0;
+	padding: 0;
+}
+table button, table input{
+	*overflow: auto;
+}
+/* Quotes
+=============================================*/
+blockquote, q{
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after{
+	content: '';
+	content: none;
+}
+blockquote, q, cite{
+	font-style: italic;
+}
+blockquote > p{
+	padding: 0;
+}
+/* Lists
+=============================================*/
+ul, ol, li{
+	list-style-position: inside;
+	list-style-type: none;
+	list-style-image: none;
+}
+/* Links
+=============================================*/
+a, a:visited, a:hover, a:active{
+	outline: none;
+	text-decoration: none;
+}
+/* Embedded content
+=============================================*/
+img, object, video{
+	max-width: 100%;
+}
+img{
+	border: 0;
+	-ms-interpolation-mode: bicubic;
+}
+svg:not(:root){
+	overflow: hidden;
+}
+/* Helpers
+=============================================*/
+hr{
+	display: block;
+	height: 1px;
+	border: 0;
+	border-bottom: 1px solid #ddd;
+}
+strong, b, dt, .bold{
+	font-weight: bold;
+}
+dfn, .italic{
+	font-style: italic;
+}
+var, address{
+	font-style: normal;
+}
+sub, sup{
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sup{
+	top: -0.5em;
+}
+sub{
+	bottom: -0.25em;
+}
+*{
+	@include box-sizing(border-box);
+}
+/* Main
+=============================================*/
+html{
+	height: 100%;
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body{
+	margin: 0 auto;
+	min-height: 100%;
+	min-width: 100%;
+	font: 1em/1.625;
+	max-width: 1024px;
+	font-family: $sansSerif;
+	font-weight: 300;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.container {
+	width: 550px;
+	margin: 0 auto;
+  	background-color: #fff;
+}
+.end{
+	color: #37CFF5;
+	font-size: 2em;
+}
+ul{
+  padding-left: 0;
+  margin-bottom: 1em;
+  li{
+ 	 list-style: none;
+ 	 padding-bottom: 7px;
+  }
+}
+input {
+	margin-right: 7px;
+}
+.back{
+	display: none;
+}
+
+button{
+	border-radius: 4px;
+	background: cornflowerblue;
+	color: white;
+	border: none;
+	padding: 6px 7px 4px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	font-family: $sansSerif;
+	font-size: 1em;
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+	&:hover{
+		background: #80ABF9;
+		-webkit-transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+		transition: all 0.2s ease;
+	}
+	&:active{
+		background: #80ABF9;
+	}
+	&:focus{
+		outline: none;
+	}
+}
+
+.stars {
+	margin: 1em 0;
+	
+	.star, .star2, .star3, .star4 {
+		font-size: 2em;
+		display: inline-block;
+		color: #fe2a57;
+		-webkit-transition: all 0.7s ease-in-out;
+		-moz-transition: all 0.7s ease-in-out; 
+		opacity: 1;
+		margin-right: 10px;
+
+		&:hover {
+		color: #033d62;
+		-webkit-transform: rotate(360deg) scale(1.5); 
+		-moz-transform: rotate(360deg) scale(1.5);
+		opacity: 0;
+		}
+	}
+
+	.star2 {
+		color: #e2254d;
+
+		&:hover {
+			color: #27a7f9;
+			-webkit-transform: rotate(-180deg) scale(2); 
+			-moz-transform: rotate(-180deg) scale(2);
+		}
+	}
+
+	.star3 {
+		color: #bc1c3e;
+
+		&:hover {
+			color: #045284;
+			-webkit-transform: rotate(180deg) scale(2.2); 
+			-moz-transform: rotate(180deg) scale(2.2);
+		}
+	}
+
+	.star4 {
+		color: #941731;
+
+		&:hover {
+			color: #0685d6;
+			-webkit-transform: rotate(-360deg) scale(2.5); 
+			-moz-transform: rotate(-360deg) scale(2.5);
+		}
+	}
+}

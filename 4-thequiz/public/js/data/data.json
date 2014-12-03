@@ -1,0 +1,53 @@
+[
+    {
+        "question": "Vad är 1+1?",
+        "choices": [
+            "2",
+            "3"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Vad är 1+1?",
+        "choices": [
+            "2",
+            "3"
+        ],
+        "correctAnswer": 0
+    },
+
+    {
+        "question": "Vad är 1+1?",
+        "choices": [
+            "2",
+            "3"
+        ],
+        "correctAnswer": 0
+    },
+
+    {
+        "question": "Vad är 1+1?",
+        "choices": [
+            "2",
+            "3"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Vad är 1+1?",
+        "choices": [
+            "2",
+            "3"
+        ],
+        "correctAnswer": 0
+    },
+    {
+        "question": "Vem är bäst?",
+        "choices": [
+            "Nisse-hult",
+            "Christopher",
+            "Niles"
+        ],
+        "correctAnswer": 1
+    }
+]

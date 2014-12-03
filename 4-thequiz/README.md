@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AjaxAssignment
 
 [![Build Status](https://travis-ci.org/thajo/AjaxAssignment.svg?branch=master)](https://travis-ci.org/thajo/AjaxAssignment)
@@ -28,9 +27,3 @@ http://tech.opentable.co.uk/blog/2013/08/16/grunt-plus-vagrant-equals-acceptance
 Stöd för vagrant ska komma. (https://www.npmjs.org/package/grunt-vagrant-commands)
 Har använt denna vagrant-fil https://github.com/semmypurewal/node-dev-bootstrap
 Kräver VirtualBox + vagrant
-=======
-1dv403-laborationer
-===================
-
-Laborationer i kursen genomförs i en fork av detta repro.
->>>>>>> 0b4ce2bbf2a76b61aa72d755a18a13d2b5f2df85

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -41,6 +40,3 @@ node_modules
 #Cloud9
 .c9
 .c9revisions
-=======
-.c9revisions
->>>>>>> 0b4ce2bbf2a76b61aa72d755a18a13d2b5f2df85
