@@ -89,10 +89,7 @@
 				
 				// Check if user send correct property
 				if(!req.body.hasOwnProperty("answer")) {
-					var id = req.body.answer;
-					var answer;
-					answer = JSON.stringify(r.getQuestion(id));
-					answer = JSON.parse(answer);
+					var answer = r.getAnswer();
 					res.json(answer);
 					res.end();
 					return;
