@@ -34,9 +34,11 @@
 		r.on("onData", function() {
 			router.get("/question/:id", function(req, res) {
 				var id = req.params.id;
+				var correct = req.params.answer;
 				var nextID = r.getNextQuestion(id).id;
 				var question;
 				try {
+					correct = req.params.answer;
 					question = JSON.stringify(r.getQuestion(id)); // must make a copy since we want to delete the answer
 					question = JSON.parse(question); // stringyfy the object and create a new variable to avoid copy properties
 				}
@@ -54,6 +56,7 @@
 				question.message = "Nytt meddelande";
 				question.howManyQuestions = r.getNumberOfQuestions(id);
 				question.time = new Date();
+				question.correctAnswer = r.getAnswer();
 				question.url = req.protocol +"://" +req.get('host') +"/question/" +id;
 				question.nextUrl = req.protocol + "://" +req.get('host') +"/question/" +nextID;
 				question.description = "Awesome answers";
@@ -65,9 +68,7 @@
 			router.get("/answer/:id", function(req, res) {
 				res.json({message: 'ONLY POST!!' });
 				res.end();
-			});
-			
-
+			});	
 			
 			//http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 			router.route("/answer/:id").post(function(req, res) {
@@ -80,7 +81,7 @@
 					res.json(question);
 				}
 				catch (err){
-					res.json({ message: 'error 404 answer' + ' ' + 'for' + ' ' +id+question}); // Should be 404, but for this assignment we indicate a call to a question not found
+					res.json({ message: 'error 404 answer' + ' ' + 'for' + ' ' +id + ' ' +question}); // Should be 404, but for this assignment we indicate a call to a question not found
 					res.end();
 					return;
 				}
@@ -88,7 +89,11 @@
 				
 				// Check if user send correct property
 				if(!req.body.hasOwnProperty("answer")) {
-					res.json(req.body.answer);
+					var id = req.body.answer;
+					var answer;
+					answer = JSON.stringify(r.getQuestion(id));
+					answer = JSON.parse(answer);
+					res.json(answer);
 					res.end();
 					return;
 				}

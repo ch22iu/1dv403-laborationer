@@ -80,6 +80,18 @@
 		}
 		throw new Error("Did call a question that doesn´t exists");
 	};
+	QuestHandler.prototype.getAnswer = function() {
+		var len = this.questions.length;
+
+		if(len < 1) {
+			throw new Error("Don´t have any data yet");
+		}
+		// check if we have a question
+		for(var i = 0; i < len; i++) {
+			return this.questions[i].answer;
+		}
+		throw new Error("Did call a question that doesn´t exists");
+	};
 
 	// exports the modeule
 	exports.createQuestHandler = function() {
