@@ -60,7 +60,8 @@
 				question.author = "Christopher Holmberg";
 				res.json(question);
 			});
-
+			
+			
 			router.get("/answer/:id", function(req, res) {
 				res.json({message: 'ONLY POST!!' });
 				res.end();
@@ -71,17 +72,15 @@
 			//http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 			router.route("/answer/:id").post(function(req, res) {
 				var id = req.params.id;
-				var answer = req.params.answer;
 				var question;
 				
-
-
 				try {
-					question = r.getQuestion(id);
-					question = JSON.parse(answer);
+					question = JSON.stringify(r.getQuestion(id));
+					question = JSON.parse(question);
+					res.json(question);
 				}
 				catch (err){
-					res.json({ message: 'error 404' }); // Should be 404, but for this assignment we indicate a call to a question not found
+					res.json({ message: 'error 404 answer' + ' ' + 'for' + ' ' +id+question}); // Should be 404, but for this assignment we indicate a call to a question not found
 					res.end();
 					return;
 				}
