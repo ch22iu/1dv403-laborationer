@@ -34,6 +34,7 @@
 		r.on("onData", function() {
 			router.get("/question/:id", function(req, res) {
 				var id = req.params.id;
+				var nextID = r.getNextQuestion(id).id;
 				var question;
 				try {
 					question = JSON.stringify(r.getQuestion(id)); // must make a copy since we want to delete the answer
@@ -49,8 +50,14 @@
 				delete question.answer;
 
 				// Send back the question
-				question.nextURL = req.protocol +"://" +req.get('host') +"/answer/" +id;
+				
 				question.message = "Nytt meddelande";
+				question.howManyQuestions = r.getNumberOfQuestions(id);
+				question.time = new Date();
+				question.url = req.protocol +"://" +req.get('host') +"/question/" +id;
+				question.nextUrl = req.protocol + "://" +req.get('host') +"/question/" +nextID;
+				question.description = "Awesome answers";
+				question.author = "Christopher Holmberg";
 				res.json(question);
 			});
 
@@ -59,22 +66,19 @@
 				res.end();
 			});
 			
-			// middleware to use for all requests
-			router.use(function(req, res, next) {
-				// do logging
-				res.json({ message: 'something happend' });
-				console.log('Something is happening.');
-				next(); // make sure we go to the next routes and don't stop here
-			});
+
 			
 			//http://scotch.io/tutorials/javascript/build-a-restful-api-using-node-and-express-4
 			router.route("/answer/:id").post(function(req, res) {
 				var id = req.params.id;
+				var answer = req.params.answer;
 				var question;
+				
 
 
 				try {
 					question = r.getQuestion(id);
+					question = JSON.parse(answer);
 				}
 				catch (err){
 					res.json({ message: 'error 404' }); // Should be 404, but for this assignment we indicate a call to a question not found
@@ -82,10 +86,10 @@
 					return;
 				}
 
-
+				
 				// Check if user send correct property
 				if(!req.body.hasOwnProperty("answer")) {
-					res.json({ message: 'Proper answer' });
+					res.json(req.body.answer);
 					res.end();
 					return;
 				}
@@ -123,7 +127,7 @@
 				res.end();
 			});
 
-			app.use('/api', router);
+			app.use('/', router);
 			
 			var server = app.listen(app.get('port')); console.log("Server listen on port " + app.get('port') +" in dev MODE");
 			callback(server);
