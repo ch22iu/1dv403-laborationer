@@ -74,21 +74,19 @@
 		for(var i = 0; i < len; i++) {
 
 			if(Number(this.questions[i].id) === Number(id)) {
-
 				return this.questions[i];
 			}
 		}
 		throw new Error("Did call a question that doesn´t exists");
 	};
-	QuestHandler.prototype.getAnswer = function() {
-		var len = this.questions.length;
+	QuestHandler.prototype.getAnswer = function(id) {
+		var answer = this.questions.length;
+		
+		for(var i = 0; i < answer; i++) {
 
-		if(len < 1) {
-			throw new Error("Don´t have any data yet");
-		}
-		// check if we have a question
-		for(var i = 0; i < len; i++) {
-			return this.questions[i].answer;
+			if(Number(this.questions[i].id) === Number(id)) {
+				return this.questions[i].answer;
+			}
 		}
 		throw new Error("Did call a question that doesn´t exists");
 	};

@@ -31,6 +31,7 @@
 		var router = express.Router();
 
 		var r = require('./questHandler.js').createQuestHandler();
+		
 		r.on("onData", function() {
 			router.get("/question/:id", function(req, res) {
 				var id = req.params.id;
@@ -56,7 +57,7 @@
 				question.message = "Nytt meddelande";
 				question.howManyQuestions = r.getNumberOfQuestions(id);
 				question.time = new Date();
-				question.correctAnswer = r.getAnswer();
+				question.correctAnswer = r.getAnswer(id);
 				question.url = req.protocol +"://" +req.get('host') +"/question/" +id;
 				question.nextUrl = req.protocol + "://" +req.get('host') +"/question/" +nextID;
 				question.description = "Awesome answers";
