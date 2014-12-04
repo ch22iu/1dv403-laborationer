@@ -65,12 +65,11 @@
 				res.json(question);
 			});
 			
-			router.get("/questions/", function(req, res) {
+			router.get("/question/", function(req, res) {
 				var id = req.params.id;
 				var showAll;
 				showAll = JSON.stringify(r.getAllquestions(id));
 				showAll = JSON.parse(showAll);
-				showAll.message = "Test";
 				res.json(showAll);
 				res.end();
 			});
