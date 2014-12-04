@@ -90,7 +90,11 @@
 		}
 		throw new Error("Did call a question that doesn´t exists");
 	};
-
+	QuestHandler.prototype.getAllquestions = function(id) {
+		var array = this.questions;
+		var allQuestions = array.valueOf();
+		return allQuestions;
+	};
 	// exports the modeule
 	exports.createQuestHandler = function() {
 		// Should create the internal Object and return it
