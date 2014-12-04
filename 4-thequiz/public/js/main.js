@@ -166,7 +166,7 @@ var Quiz = {
     var scope = this;
     setTimeout(function(){
       $('#main, #next, #back').hide();
-      $('h1').text('The End.');
+      $('h1').text('Slut');
       $('h2').text('Your Score Is: ' + scope.total);
     }, 750);
   }
