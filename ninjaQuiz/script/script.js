@@ -4,11 +4,16 @@ var wrongAnswer = 1;
 $(document).ready(function(){
 	$("#totalQuestions").html(allQuestions.length);
 	showCurrentQuestion(currentQuestionIndex);
+	$('#wrong').hide();
+	$('#correct').hide();
+	$('#total').hide();
 	
 	$("#next").on("click", function(e){
+
 		e.preventDefault();
 		if(isValid()){
 			$('#alert').html("");
+
 
 			gradeCurrentQuestion();
 			
@@ -21,7 +26,13 @@ $(document).ready(function(){
 				var scoreHTML = "Your score is " + score + ".";
 				
 				if(score >= 5){
+					correctAnswer -= 1;
+					wrongAnswer -= 1;
+					
 					$('.container').html(scoreHTML + " You did it!" + "<img src='img/ninja.png'>");
+					$('#questionbox').html("Total correct answers: " + correctAnswer).fadeIn('slow');
+					$('#nav').html("Total wrong answers: " + wrongAnswer).fadeIn('fast');
+					
 				} else if( score >= 3){
 					$('.container').html(scoreHTML + " Close " + "<img src='img/ninja.png'>");
 				} else {
@@ -30,6 +41,9 @@ $(document).ready(function(){
 			}	
 		} else {
 			// tell user to select an option 
+			$('#correct').hide();
+			$('#wrong').hide();
+			$('#total').hide();
 			$('#alert').hide().html("You need to choose an option to continue.").fadeIn('slow ');
 			showCurrentQuestion(currentQuestionIndex);
 		}
@@ -61,15 +75,18 @@ function showCurrentQuestion(index){
 }
 
 function gradeCurrentQuestion(index){
+	$('#wrong').hide();
 	allQuestions[currentQuestionIndex].selection = +$('input[name=q]:checked').val();
 	if(allQuestions[currentQuestionIndex].selection == allQuestions[currentQuestionIndex].correctAnswer){
-		$('#wrong').html("Correct answer").fadeIn('slow');
-		$('#correct').html(correctAnswer + " " + "correct answer(s)").fadeIn('slow');
+		$('#correct').html("Correct answer").fadeIn('slow');
+		$('#total').html(correctAnswer + " " + "correct answer(s)").fadeIn('slow');
 		correctAnswer++;
 	}
 	else
 	{
-		$('#wrong').html(wrongAnswer + " " + "wrong answer").fadeIn('slow');
+		$('#correct').hide()
+		$('#wrong').html("Wrong answer.").fadeIn('fast');
+		$('#total').html(" " + "Total wrong answers: " + wrongAnswer).fadeIn('fast');
 		wrongAnswer += 1;
 		showCurrentQuestion(index)
 	}

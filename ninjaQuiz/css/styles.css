@@ -77,7 +77,20 @@ img
 {
 	padding: 80px;
 }
-
+#wrong
+{
+	border:1px solid white;
+	color:red;
+}
+#correct
+{
+	border:1px solid white;
+	color:green;
+}
+#total
+{
+	color:white;
+}
 .questionradios 
 {
 	margin: 1px;
