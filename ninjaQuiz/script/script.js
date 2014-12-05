@@ -42,14 +42,24 @@ $(document).ready(function(){
 
 	$('#back').on("click", function(e){
 		e.preventDefault();
-		
+		goBack();
 		if(currentQuestionIndex > 0){
+			$('#alert').hide().html("Wanna change this question?").fadeIn('slow ');
+			$('#wrong').hide();
+			$('#correct').hide();
+			$('#total').hide();
 			currentQuestionIndex = currentQuestionIndex - 1;
 			correctAnswer = correctAnswer - 1;
-			wrongAnswer = wrongAnswer - 1;
-			showPreviousQuestion(currentQuestionIndex,wrongAnswer,correctAnswer, allQuestions[currentQuestionIndex].selection);
+			showPreviousQuestion(currentQuestionIndex, allQuestions[currentQuestionIndex].selection);
 		}
-		
+		else
+		{
+			$('#alert').hide().html("Cant do that right now.").fadeIn('slow ');
+			$('#wrong').hide();
+			$('#correct').hide();
+			$('#total').hide();
+			showCurrentQuestion(currentQuestionIndex, allQuestions[currentQuestionIndex].selection);
+		}
 	});
 	
 });
@@ -66,6 +76,14 @@ function showCurrentQuestion(index){
 		$(":radio[value=" + allQuestions[currentQuestionIndex].selection +"]").prop("checked", true);
 	}
 }
+
+function goBack(){
+	$('#wrong').hide();
+	allQuestions[currentQuestionIndex].selection = +$('input[name=q]:checked').val();
+	if(allQuestions[currentQuestionIndex].selection == allQuestions[currentQuestionIndex].correctAnswer){
+	}
+}
+
 
 function gradeCurrentQuestion(index){
 	$('#wrong').hide();
