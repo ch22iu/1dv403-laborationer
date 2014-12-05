@@ -1,0 +1,68 @@
+[
+    {
+        "question": "What is 1+1",
+        "choices": [
+            "2",
+            "4",
+            "8",
+            "1"
+        ],
+        "correctAnswer": 0,
+        "selection": -1
+    },
+    {
+        "question": "Who is best in the world?",
+        "choices": [
+            "None",
+            "Santa",
+            "Christopher",
+            "Rain"
+        ],
+        "correctAnswer": 2,
+        "selection": -1
+    },
+    {
+        "question": "What is 8-4",
+        "choices": [
+            "2",
+            "4",
+            "8",
+            "1"
+        ],
+        "correctAnswer": 1,
+        "selection": -1
+    },
+    {
+        "question": "What is 3-2",
+        "choices": [
+            "2",
+            "4",
+            "8",
+            "1"
+        ],
+        "correctAnswer": 3,
+        "selection": -1
+    },
+    {
+        "question": "What is 2*2",
+        "choices": [
+            "2",
+            "4",
+            "8",
+            "1"
+        ],
+        "correctAnswer": 1,
+        "selection": -1
+    },
+    {
+        "question": "What is 2-1",
+        "choices": [
+            "2",
+            "4",
+            "8",
+            "1"
+        ],
+        "correctAnswer": 3,
+        "selection": -1
+    }
+]

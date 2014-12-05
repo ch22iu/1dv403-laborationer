@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ninja Quiz</title>
+<link href="css/styles.css" rel="stylesheet" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="script/script.js"></script>
+</head>
+
+<body>
+	<div class="wrap" id="quizpage">
+		<header>
+			<h1>Are you a Ninja?</h1>
+		</header>
+		<div class="container">
+			<div id="nav">Question <span id="currentQuestion"></span> of <span id="totalQuestions"></span></div>
+			<form>
+				<div class="questionbox">
+					<fieldset class="questionradios"></fieldset>
+				</div>
+				<div id="correct"></div>
+				<div id="wrong"></div>
+				<div id="alert"></div>
+				<div class="button-group">
+					<button id="back">Back</button>
+					<button type="submit" id="next">Next</button>
+				</div>
+				
+			</form>
+
+		</div>	
+	</div>
+</body>
+</html>
