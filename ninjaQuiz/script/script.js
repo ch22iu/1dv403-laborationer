@@ -24,20 +24,11 @@ $(document).ready(function(){
 			} else {
 				var score = calculateScore();
 				var scoreHTML = "Your score is " + score + ".";
-				
-				if(score >= 5){
-					correctAnswer -= 1;
-					wrongAnswer -= 1;
-					
-					$('.container').html(scoreHTML + " You did it!" + "<img src='img/ninja.png'>");
-					$('#questionbox').html("Total correct answers: " + correctAnswer).fadeIn('slow');
-					$('#nav').html("Total wrong answers: " + wrongAnswer).fadeIn('fast');
-					
-				} else if( score >= 3){
-					$('.container').html(scoreHTML + " Close " + "<img src='img/ninja.png'>");
-				} else {
-					$('.container').html(scoreHTML + " Ha noob " + "<img src='img/ninja.png'>");
-				}
+				correctAnswer -= 1;
+				wrongAnswer -= 1;
+				$('.container').html("<img src='img/ninja.png'>");
+				$('.totalQuest').html("Total correct answers: " + correctAnswer).fadeIn('slow');
+				$('.totalPoints').html("Total wrong answers: " + wrongAnswer).fadeIn('fast');
 			}	
 		} else {
 			// tell user to select an option 
@@ -54,6 +45,8 @@ $(document).ready(function(){
 		gradeCurrentQuestion();
 		if(currentQuestionIndex > 0){
 			currentQuestionIndex = currentQuestionIndex - 1;
+			correctAnswer = correctAnswer - 1;
+			wrongAnswer = wrongAnswer - 1;
 			showPreviousQuestion(currentQuestionIndex, allQuestions[currentQuestionIndex].selection);
 		}
 		

@@ -13,7 +13,14 @@ h1
 	text-align: center;
 	color:white;
 }
-
+.totalPoints
+{
+	color:red;
+}
+.totalQuest
+{
+	color:green;
+}
 h3 
 {
 	text-align: center;
