@@ -121,6 +121,11 @@ function MemoryGame(boardID) {
 	if (clickCount === 2) 
 		{
 		
+		if (click.firstChild.getAttribute("class") == "open")
+		{
+			clickCount = 1;
+			return;
+		}
 		if (click.firstChild.classList.contains("pair")) {
 			clickCount = 1;
 			return;
