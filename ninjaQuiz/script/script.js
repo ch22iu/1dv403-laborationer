@@ -42,12 +42,12 @@ $(document).ready(function(){
 
 	$('#back').on("click", function(e){
 		e.preventDefault();
-		gradeCurrentQuestion();
+		
 		if(currentQuestionIndex > 0){
 			currentQuestionIndex = currentQuestionIndex - 1;
 			correctAnswer = correctAnswer - 1;
 			wrongAnswer = wrongAnswer - 1;
-			showPreviousQuestion(currentQuestionIndex, allQuestions[currentQuestionIndex].selection);
+			showPreviousQuestion(currentQuestionIndex,wrongAnswer,correctAnswer, allQuestions[currentQuestionIndex].selection);
 		}
 		
 	});
