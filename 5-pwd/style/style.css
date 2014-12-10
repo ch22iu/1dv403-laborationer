@@ -1,0 +1,223 @@
+body
+{
+	background-image: url("pics/background.jpg");
+}
+h1 
+{
+	text-align: center;
+	color: black;
+	font-size: 40px;
+}
+#newBack
+{
+	border:0px solid black;
+	border-radius:5px;
+}
+#newRSS
+{
+	border:0px solid black;
+	border-radius:5px;
+}
+#newGame
+{
+	border:0px solid black;
+	border-radius:5px;
+}
+a 
+{
+	text-decoration: none;
+	color:black;
+}
+
+.content 
+{
+	overflow: auto;
+}
+
+.board 
+{
+	position: relative;
+	width: 395px;
+	float: left;
+	margin: 20px 10px 20px 10px;
+	padding: 2px 0;
+	background-color: black;
+	border-radius: 3px;
+}
+
+.tile , .tile img 
+{
+	padding: 2px;
+}
+
+.tile img 
+{
+	width: 90px;
+	height: 90px;
+}
+.closeTab 
+{
+	position: absolute;
+	padding: 2px;
+	color: #2A8FBD;
+	display: inline-block;
+	border-radius: 3px 3px 0 0;
+	background-color: #FFFFFF;
+	top: 0px;
+	right: 0;
+}
+
+.close 
+{
+	float:left;
+	background-image: #b72d16;
+	background-image: -webkit-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -moz-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -o-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: -ms-linear-gradient(bottom, #b72d16, #cd3217);
+	background-image: linear-gradient(bottom, #b72d16, #cd3217);
+}
+
+.overlay 
+{
+position: absolute;
+background-color: rgba(0, 0, 0, 0.6);
+width: 100%;
+height: 100%;
+top: 0;
+z-index: 5;
+}
+
+html {
+	height: 100%;
+	background-image: url("tomat_img_0411.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+main {
+	overflow: auto;
+}
+#mainFooter 
+{
+	background-color: white;
+	border-top: groove;
+	height: 3.5em;
+	border-color:pink;
+	border:1px solid pink;
+	margin: 0;
+	padding: 0.3em 0em 0em 0.5em;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.icons 
+{
+	display: block;
+	text-decoration: none;
+	width: 4em;
+	float:left;
+	padding: 0;
+	margin: 0;
+	vertical-align: middle;
+}
+.iconImg 
+{
+	padding: 0;
+	display: block;
+	width:55px;
+	height:45px;
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 0.3em;
+	border: #ffffff groove 0.3em;
+}
+
+/*Fönster för att välja bakgrund*/
+.chooseBackgroundWindow 
+{
+	width: 20em;
+	overflow: auto;
+	border: 0;
+	background-color: white;
+	border:2px solid black;
+	border-radius: 0.5em;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+.front
+{
+	z-index: 100;
+	float:left;
+}
+.headerChooseBackgroundWindow
+{
+	height: 3em;
+	background-color: white;
+	border:1px solid black;
+	border-bottom: groove;
+	padding: 0.5em;
+}
+.iconChooseBackgroundWindow
+{
+	height: 2.5em;
+	border-radius: 0.2em;
+	border-color:pink;
+}
+.headerTextChoosenBackgroundWindow
+{
+	color: black;
+	font-size: 1.1em;
+	font-style: italic;
+	border-color:pink;
+	font-weight: bold;
+	margin-left: 0.3em;
+	vertical-align: top;
+}
+.aClose
+{
+	display: block;
+	height: 1.2em;
+	float: right;
+}
+.imgClose
+{
+	height: inherit;
+}
+.mainChooseBackgroundWindow
+{
+	height: 20em;
+}
+.imageDivs
+{
+	display: inline-block;
+	background-color: black;
+	border-radius:5px;
+	margin: 0.1em;
+	padding: 0.2em;
+	border-radius: 0.2em;
+}
+.imgsToChoose
+{
+	vertical-align:middle;
+}
+.aAroundImgsToChoose
+{
+	text-align:center;
+	display:block;
+}
+.footerChooseBackgroundWindow 
+{
+	height: 2em;
+	background-color: white;
+	border-color:pink;
+	border-top: groove;
+	border-radius:5px;
+	border: 1px solid black;
+	padding: 0.3em 0em 0em 0.5em;
+	clear:both;
+}
+
