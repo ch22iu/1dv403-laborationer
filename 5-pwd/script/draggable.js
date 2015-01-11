@@ -1,102 +1,151 @@
-(function () {
-"use strict";
-/*global JAWM */
+!(function(moduleName, definition) {
+  // Whether to expose Draggable as an AMD module or to the global object.
+  if (typeof define === 'function' && typeof define.amd === 'object') define(definition);
+  else this[moduleName] = definition();
 
-
-/**
- * Provides drag-and-drop functionality for all of the windows on the page.
- * Use dragDrop.enable or dragDrop.disable to toggle the functionality.
- *
- * This is mostly taken from 'Professional JavaScript for Web Developers' by Zakas,
- * but with no dependencies and less backward-compatibility.
- * - because fuck you IE, that's why.
- */
-JAWM.extend("gui").draggable = (function () {
-
-    var dragging = null, // The element that is being dragged
-        offsetX = 0, // Coordinates inside the draggable object
-        offsetY = 0,
-        lastTarget; // used for resetting cursor
-
-    function drag(e) {
-        var target = e.target;  // The element being dragged (titlebar)
-
-        switch (e.type) {
-
-            // Check if dragging should be performed
-            case "mousedown":
-
-                // Make title-text draggable too
-                if (target.className.indexOf("window-title-text") > -1) {
-                    target = target.parentNode; // move up one step
+})('draggable', function definition() {
+  function addEventListener(element, eventName, handler) {
+                if (element.addEventListener) {
+                    element.addEventListener(eventName, handler, false);
+                } else if (element.attachEvent) {
+                    element.attachEvent('on' + eventName, handler);
+                } else {
+                    element['on' + eventName] = handler;
                 }
+            }
+  function removeEventListener(element, eventName, handler) {
+      if (element.removeEventListener) {
+          element.removeEventListener(eventName, handler, false);
+      } else if (element.detachEvent) {
+          element.detachEvent('on' + eventName,handler);
+      } else {
+          element['on' + eventName] = null;
+      }
+  }
+  var currentElement;
+  var fairlyHighZIndex = '10';
 
-                // If the element has the draggable-class, or is inside that element
-                if (target.className.indexOf("window-titlebar") > -1) {
+  function draggable(element, handle) {
+    handle = handle || element;
+    setPositionType(element);
+    setDraggableListeners(element);
+    addEventListener(handle,'mousedown', function(event) {
+      startDragging(event, element);
+    });
+  }
 
-                    // Drag the parent-node
-                    // TODO make this more robust
-                    dragging = target.parentNode;
+  function setPositionType(element) {
+    element.style.position = 'absolute';
+  }
 
-                    // Don't rely on the CSS to be correct
-                    dragging.style.position = "absolute";
-
-                    // Change the cursor
-                    target.style.cursor = "move";
-                    lastTarget = target;
-
-                    // Compensate for mouse offset
-                    offsetX = e.clientX - dragging.offsetLeft;
-                    offsetY = e.clientY - dragging.offsetTop;
-
-                }
-                break;
-
-            // Move the window if dragging
-            case "mousemove":
-                // While dragging something...
-                if (dragging !== null) {
-
-                    // ...set the elements coordinates to the mouse's
-                    dragging.style.left = (e.clientX - offsetX) + "px";
-                    dragging.style.top = (e.clientY - offsetY) + "px";
-
-                    
-                }
-                break;
-
-            // Drop everything
-            case "mouseup":
-                // If something is dragging
-                if (dragging !== null) {
-
-                    // Drop it
-                    lastTarget.style.cursor = "default";
-                    dragging = null;
-                }
-                break;
-        }
-
-    } // end drag
-
-    // Public methods
-    return {
-        enable: function () {
-            document.addEventListener("mousedown", drag, false);
-            document.addEventListener("mousemove", drag, false);
-            document.addEventListener("mouseup", drag, false);
-        },
-
-        disable: function () {
-            document.removeEventListener("mousedown", drag, false);
-            document.removeEventListener("mousemove", drag, false);
-            document.removeEventListener("mouseup", drag, false);
-        }
+  function setDraggableListeners(element) {
+    element.draggableListeners = {
+      start: [],
+      drag: [],
+      stop: []
     };
+    element.whenDragStarts = addListener(element, 'start');
+    element.whenDragging = addListener(element, 'drag');
+    element.whenDragStops = addListener(element, 'stop');
+  }
 
-}());
+  function startDragging(event, element) {
+    currentElement && sendToBack(currentElement);
+    currentElement = bringToFront(element);
 
 
+    var initialPosition = getInitialPosition(currentElement);
+    currentElement.style.left = inPixels(initialPosition.left);
+    currentElement.style.top = inPixels(initialPosition.top);
+    currentElement.lastXPosition = event.clientX;
+    currentElement.lastYPosition = event.clientY;
 
-// END LOCAL SCOPE
-}());
+    var okToGoOn = triggerEvent('start', { x: initialPosition.left, y: initialPosition.top, mouseEvent: event });
+    if (!okToGoOn) return;
+
+    addDocumentListeners();
+  }
+
+  function addListener(element, type) {
+    return function(listener) {
+      element.draggableListeners[type].push(listener);
+    };
+  }
+
+  function triggerEvent(type, args) {
+    var result = true;
+    var listeners = currentElement.draggableListeners[type];
+    for (var i = listeners.length - 1; i >= 0; i--) {
+      if (listeners[i](args) === false) result = false;
+    };
+    return result;
+  }
+
+  function sendToBack(element) {
+    var decreasedZIndex = fairlyHighZIndex - 1;
+    element.style['z-index'] = decreasedZIndex;
+    element.style['zIndex'] = decreasedZIndex;
+  }
+
+  function bringToFront(element) {
+    element.style['z-index'] = fairlyHighZIndex;
+    element.style['zIndex'] = fairlyHighZIndex;
+    return element;
+  }
+
+  function addDocumentListeners() {
+    addEventListener(document,'selectstart', cancelDocumentSelection);
+    addEventListener(document,'mousemove', repositionElement);
+    addEventListener(document,'mouseup', removeDocumentListeners);
+  }
+
+  function getInitialPosition(element) {
+    var boundingClientRect = element.getBoundingClientRect();
+    return {
+      top: boundingClientRect.top,
+      left: boundingClientRect.left
+    };
+  }
+
+  function inPixels(value) {
+    return value + 'px';
+  }
+
+  function cancelDocumentSelection(event) {
+    event.preventDefault && event.preventDefault();
+    event.stopPropagation && event.stopPropagation();
+    event.returnValue = false;
+    return false;
+  }
+
+  function repositionElement(event) {
+    event.preventDefault && event.preventDefault();
+    event.returnValue = false;
+    var style = currentElement.style;
+    var elementXPosition = parseInt(style.left, 10);
+    var elementYPosition = parseInt(style.top, 10);
+
+    var elementNewXPosition = elementXPosition + (event.clientX - currentElement.lastXPosition);
+    var elementNewYPosition = elementYPosition + (event.clientY - currentElement.lastYPosition);
+
+    style.left = inPixels(elementNewXPosition);
+    style.top = inPixels(elementNewYPosition);
+
+    currentElement.lastXPosition = event.clientX;
+    currentElement.lastYPosition = event.clientY;
+
+    triggerEvent('drag', { x: elementNewXPosition, y: elementNewYPosition, mouseEvent: event });
+  }
+
+  function removeDocumentListeners(event) {
+    removeEventListener(document,'selectstart',cancelDocumentSelection);
+    removeEventListener(document,'mousemove',repositionElement);
+    removeEventListener(document,'mouseup',removeDocumentListeners);
+
+    var left = parseInt(currentElement.style.left, 10);
+    var top = parseInt(currentElement.style.top, 10);
+    triggerEvent('stop', { x: left, y: top, mouseEvent: event });
+  }
+
+  return draggable;
+});

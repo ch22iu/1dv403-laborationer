@@ -1,21 +1,21 @@
 "use strict";
+
 window.addEventListener("load", function() {
 	var gui = JAWM.gui;
 	var newBack = document.getElementById("newBack");
 	var newRSS = document.getElementById("newRSS");
 	var newMem = document.getElementById("newGame");
 	var text = document.getElementById("textarea");
+	var moveThis = document.getElementById("test");
 	var check = 1;
 	
 	// Init
-	gui.draggable.enable();
+	// gui.draggable.enable();
+	draggable(moveThis);
 	
-	
-	// Ny RSS
+	// Ny Bakgrund
 	newBack.onclick = function() {
-		gui.draggable.enable();
 		newBack();
-		
 		function newBack() {
 			var newB = new newBackground();
 			newB.init();
@@ -24,13 +24,12 @@ window.addEventListener("load", function() {
 	};
 	// Ny RSS
 	newRSS.onclick = function() {
-		this.resizable(true);
+		alert('Funkar!');
 		//newRSS.init();
 	};
 	// Nytt spel
 	newMem.onclick = function() {
 		newMemory();
-		gui.draggable.enable();
 		
 		function newMemory() {
 			var wrapper = document.querySelector(".content");
@@ -43,7 +42,12 @@ window.addEventListener("load", function() {
 			check += 1;
 			console.log("You have created a new game.");
 			}
+			draggable(wrapper);
+			draggable(newBoard);
+			draggable(memory);
+			draggable(board);
 	};
+	
 });
 
 function newBackground() {
@@ -54,6 +58,7 @@ function newBackground() {
     }
      that.backGround = function() {
         //skapar element för fönster och dess delar
+		var move = document.querySelector(".chooseBackgroundWindow");
         var divChooseBackground = $("<div class='chooseBackgroundWindow'></div>");
         var headerChooseBackground = $("<header class='headerChooseBackgroundWindow'></header>");
         var iconChooseBackground = $("<img class='iconChooseBackgroundWindow' src='pics/icon_DSC00846.png'/>");
@@ -64,7 +69,7 @@ function newBackground() {
         var footerChooseBackground = $("<footer class='footerChooseBackgroundWindow'></footer>");
 
         //lägger ut elementen i DOMen
-        $(".content").append(divChooseBackground);
+        $(".content2").append(divChooseBackground);
         divChooseBackground.append(headerChooseBackground);
         divChooseBackground.append(mainChooseBackground);
         divChooseBackground.append(footerChooseBackground);
@@ -72,7 +77,8 @@ function newBackground() {
         headerChooseBackground.append(headerTextChooseBackground);
         headerChooseBackground.append(aCloseChooseBackground);
         aCloseChooseBackground.append(imgCloseChooseBackground);
-
+		
+		
         var that = this;
         aCloseChooseBackground.click(function() {
             that.closeBackgroundWindow(divChooseBackground);
@@ -159,27 +165,20 @@ function newBackground() {
             divJqIndex.removeClass("front");
         });
         divChooseBackground.addClass("front");
+		draggable(move);
     }
-    this.positionWindow = function() {
-        var divs = $(".chooseBackgroundWindow");
-        var top = 10;
-        var left = 10;
+    that.positionWindow = function() {
+		var move = document.querySelector(".chooseBackgroundWindow");
 
-        divs.each(function(index) {
-            var divJqIndex = $(divs[index]);
-            divJqIndex.css({
-                top : top,
-                left : left
-            });
-            top += 30;
-            left += 30;
-        });
+            draggable(move);
     }
+	
 };
 
 
 
 function MemoryGame(boardID) {
+	
 	var that = this;
 	// Mina Closures variabler
 	var countArray = [];
@@ -210,6 +209,9 @@ function MemoryGame(boardID) {
 		memoryBoard.setAttribute("class", "memoryBoard");
 		currentBoard.appendChild(closeTab);
 		currentBoard.appendChild(memoryBoard);
+
+		// Gör så att man kan ändra position på fönstret.
+		draggable(wrapper);
 		
 		// close memoryBoardboard
 		closeTab.onclick = function() {
@@ -221,6 +223,8 @@ function MemoryGame(boardID) {
 		for (var i = 0; i < randomArray.length; i += 1) {
 		randomTiles(i);
 		}
+	
+		
 	/*
 	Funktionen som tar hand om/skapar upp bilderna
 	Sätter även lite attribut till dom olika childsen.
