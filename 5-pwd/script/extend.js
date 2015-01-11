@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This file needs to be included before all other files that use
  * the JAWM global object.

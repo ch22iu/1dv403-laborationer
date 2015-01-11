@@ -1,4 +1,5 @@
 "use strict";
+
 function AjaxCon(url, callback, footerChooseBackground) {
     //Konstanter för status på anrop. Behövs ej. För att jag ska förstå och kunna följa
     var READY_STATE_UNINITIALIZED = 0;

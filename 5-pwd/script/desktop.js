@@ -24,8 +24,22 @@ window.addEventListener("load", function() {
 	};
 	// Ny RSS
 	newRSS.onclick = function() {
-		alert('Funkar!');
-		//newRSS.init();
+		newRSS();
+		
+		function newRSS() {
+			var newR = document.querySelector("#test");
+			var newBoard = document.createElement("div");
+			newBoard.id = "Gameboard: " + " " + check;
+			newBoard.setAttribute("class", "board");
+			newR.appendChild(newBoard);
+			var rss = new RSS(newBoard.id);
+			rss.init();
+			check += 1;
+			console.log("You have created a new game.");
+			}
+			draggable(newBoard);
+			draggable(rss);
+			draggable(board);
 	};
 	// Nytt spel
 	newMem.onclick = function() {
@@ -363,6 +377,60 @@ function MemoryGame(boardID) {
 	};
 };
 
+function RSS(boardID) {
+	
+	var that = this;
+	// Mina Closures variabler
+	var countArray = [];
+	var guessCount = 0;
+	var clickCount = 0;
+	var pairCount = 0;
+	
+	that.init = function() {
+		that.generateMemory();
+	};
+	
+	that.random = function() {
+		var randomTiles = RandomGenerator.getPictureArray(4, 4);
+		return randomTiles;
+	};
+	
+	that.generateMemory = function() {
+		var currentBoard, a, img, memoryBoard, randomArray, count, closeTab, wrapper;
+		var refresh = 3000;
+		wrapper = document.querySelector("#test");
+		currentBoard = document.getElementById(boardID);
+		closeTab = document.createElement("a");
+		closeTab.href = "#";
+		closeTab.textContent = "Close";
+		closeTab.setAttribute("class", "closeTab");
+		memoryBoard = document.createElement("div");
+		memoryBoard.setAttribute("class", "memoryBoard");
+		currentBoard.appendChild(closeTab);
+		currentBoard.appendChild(memoryBoard);
+
+		// Gör så att man kan ändra position på fönstret.
+		draggable(wrapper);
+		
+		// close memoryBoardboard
+		closeTab.onclick = function() {
+		wrapper.removeChild(currentBoard);
+		console.log("You closed down " + " " +boardID);
+		return false;
+		};
+		
+		$(document).ready(function () {
+		    
+    
+		$('#test').rssfeed('http://www.dn.se/m/rss/senaste-nytt', {
+		
+		limit: 4
+	 });
+	 setInterval(rss, refresh);
+	});
+	
+	};
+};
 
 
 

@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener("load", function() {
 	var startButton = document.getElementById("newGameBtn");
 	var text = document.getElementById("textarea");
