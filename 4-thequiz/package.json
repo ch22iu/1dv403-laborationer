@@ -1,0 +1,50 @@
+{
+  "name": "AjaxAssignment",
+  "version": "0.5.0",
+  "main": "app.js",
+  "description": "Assignment for Webbteknik I",
+  "homepage": "https://github.com/thajo/AjaxAssignment",
+  "bugs": "https://github.com/thajo/AjaxAssignment/issues",
+  "author": {
+    "name": "John Häggerud",
+    "email": "john.haggerud@lnu.se"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thajo/AjaxAssignment"
+  },
+  "licenses": [
+    {
+      "type": "CC0"
+    }
+  ],
+  "files": [
+    ""
+  ],
+  "keywords": [],
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-compress": "^0.12.0",
+    "grunt-contrib-copy": "^0.6.0",
+    "grunt-contrib-jasmine": "^0.8.0",
+    "grunt-contrib-jshint": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-coveralls": "^1.0.0",
+    "grunt-express-server": "^0.4.19",
+    "grunt-jasmine-node": "^0.2.1",
+    "grunt-jasmine-node-coverage": "0.1.11",
+    "jasmine-node": "^1.14.5",
+    "jshint-stylish": "~0.1.3",
+    "load-grunt-tasks": "~0.2.0",
+    "request": "^2.44.0",
+    "time-grunt": "~0.2.0"
+  },
+  "scripts": {
+    "test": "jasmine-node spec/*.spec.js --verbose"
+  },
+  "dependencies": {
+    "redis": "0.12.1",
+    "express": "4.x",
+    "body-parser": "^1.9.0"
+  }
+}

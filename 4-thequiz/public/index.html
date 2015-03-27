@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Ninja Quiz v13.37</title>
+		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<script type="text/javascript" src="js/libs/handlebars.js"></script>
+	</head> 
+	
+	<body>
+		<div class="container">
+			<h1>Ninja Quiz v1.337</h1>
+			<h2>Score: <span id="total">0</span></h2>
+		
+			<section id="main">
+
+				<script id="question-template" type="text/x-handlebars-template">
+					<div class="question current">
+						<h3>{{question}}</h3>		
+			  		<ul class="choices">
+							{{#choices}}
+	  						<li>
+	  							<input type="radio" name="question" value="{{@index}}">
+	      						{{this}}
+	      				</li>
+							{{/choices}}
+						</ul>
+					</div>
+
+		  	</script>
+
+		  </section>
+
+	    <div id="buttons">
+	    	<button type="button" id="next">Next</button>
+	    	<button type="button" id="back">Back</button>
+	  	</div>
+	    <p id="end"></p>
+    	
+    	<div class="stars">
+		    <span class="star">&#9733;</span>
+		    <span class="star2">&#9733;</span>
+		    <span class="star3">&#9733;</span>
+		    <span class="star4">&#9733;</span>
+	    </div>
+	    <h4 id="answer"></h4>	
+
+		</div>
+
+		<script src="js/script.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/AJAXPromiseManager.js"></script>
+
+	</body>
+
+</html>

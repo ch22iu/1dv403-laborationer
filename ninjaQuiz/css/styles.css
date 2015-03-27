@@ -1,0 +1,117 @@
+body 
+{
+	background-color: black;
+	font-family: "nixie one", courier;
+	line-height: 30px;
+	font-weight: bold;
+
+}
+
+h1 
+{
+	font-weight: bolder;
+	text-align: center;
+	color:white;
+}
+.totalPoints
+{
+	color:red;
+}
+.totalQuest
+{
+	color:green;
+}
+h3 
+{
+	text-align: center;
+	color:white;
+	margin-bottom: 50px;
+}
+
+#nav 
+{
+	width: 30%;
+	margin: 30px auto;
+	color:white;
+	font-size: 1.17em;
+}
+
+legend 
+{
+	font-weight: bolder;
+}
+
+label 
+{
+	display: list-item;
+	list-style-type: none;
+	padding-left: 16px;
+}
+
+
+
+img 
+{
+	display: block;
+	margin: auto;
+	border: 5px solid #000; 
+	margin-top: 43px;
+}
+ 
+ button 
+ {
+ 	font-family: "Arial";
+	font-size: 40px;
+	color: grey;
+	background-color: white;
+	display: inline;	
+ }
+.container
+{
+	color:white;
+	margin-left:50px;
+}
+.score 
+{
+	display: none;
+	padding: 25px;
+	color:white;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bolder;
+}
+.wrap 
+{
+	padding: 80px;
+}
+#wrong
+{
+	border:1px solid white;
+	color:red;
+}
+#correct
+{
+	border:1px solid white;
+	color:green;
+}
+#total
+{
+	color:white;
+}
+.questionradios 
+{
+	margin: 1px;
+	color:white;
+	border: none;
+}
+ .button-group 
+ {
+ 	width: 34%;
+	margin: 40px auto;
+ }
+
+ #alert 
+ {
+ 	height: 30px;
+ 	padding-left: 22px;
+ }
